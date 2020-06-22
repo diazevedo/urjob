@@ -13,7 +13,7 @@ export const Wrapper = styled.View`
 export const ButtonWrapper = styled.View`
   width: 33%;
   border-right-color: ${(props) =>
-    props.isLast === 1 ? 'transparent' : '#000'};
+    props.isLast === 1 ? 'transparent' : colors.second};
   border-right-width: ${(props) => (props.isLast === 1 ? '0px' : '1px')};
 
   padding: 12px 30px;
