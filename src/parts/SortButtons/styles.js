@@ -7,6 +7,7 @@ export const Wrapper = styled.View`
   border-radius: 16px;
   width: 100%;
   background-color: ${colors.fourth};
+  margin-top: 20px;
 `;
 
 export const ButtonWrapper = styled.View`
