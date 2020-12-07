@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Animated, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import * as C from './styles';
 
 const LeftActions = (progress, dragX) => {

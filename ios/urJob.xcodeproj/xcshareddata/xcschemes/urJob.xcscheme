@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "DiTemplate.app"
-               BlueprintName = "DiTemplate"
-               ReferencedContainer = "container:DiTemplate.xcodeproj">
+               BuildableName = "urJob.app"
+               BlueprintName = "urJob"
+               ReferencedContainer = "container:urJob.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "DiTemplateTests.xctest"
-               BlueprintName = "DiTemplateTests"
-               ReferencedContainer = "container:DiTemplate.xcodeproj">
+               BuildableName = "urJobTests.xctest"
+               BlueprintName = "urJobTests"
+               ReferencedContainer = "container:urJob.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DiTemplate.app"
-            BlueprintName = "DiTemplate"
-            ReferencedContainer = "container:DiTemplate.xcodeproj">
+            BuildableName = "urJob.app"
+            BlueprintName = "urJob"
+            ReferencedContainer = "container:urJob.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DiTemplate.app"
-            BlueprintName = "DiTemplate"
-            ReferencedContainer = "container:DiTemplate.xcodeproj">
+            BuildableName = "urJob.app"
+            BlueprintName = "urJob"
+            ReferencedContainer = "container:urJob.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
