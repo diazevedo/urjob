@@ -5,15 +5,14 @@ import colors from '~/styles/colors';
 export const Wrapper = styled.View`
   width: 100%;
   background-color: ${colors.fourth};
-  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 6px;
 `;
-export const ViewS = styled.View`
+export const View = styled.View`
   width: 100%;
   background-color: ${colors.fourth};
-
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px 16px;
 `;
 
 export const Line = styled.View`
@@ -34,13 +33,17 @@ export const WrapperCompanyDays = styled.View`
 export const Company = styled.Text`
   color: ${(props) => props.color};
   font-size: ${(props) => (props.size ? `${props.size}px` : '18px')};
+  opacity: ${(props) => (props.opacity ? props.opacity : 1)};
   margin-bottom: 10px;
+  margin-right: 10px;
   font-family: 'Abel-Regular';
 `;
 
 export const CompanyLogo = styled.Image`
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  align-self: flex-start;
 `;
 
 export const LocationLine = styled.View`
