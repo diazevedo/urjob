@@ -13,7 +13,7 @@ import Bottom from './bottomTabs';
 
 const MainStack = () => (
   <NavigationContainer>
-    <StatusBar barStyle="dark-content" />
+    <StatusBar barStyle="light-content" />
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Main" component={Bottom} />
     </Stack.Navigator>

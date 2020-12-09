@@ -7,15 +7,13 @@ import MainStack from '~/routes/';
 import '~/config/ReactotronConfig';
 
 const styles = {
-  safeArea: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#f3f5f9',
-  },
+  flex: 1,
+  flexDirection: 'row',
+  backgroundColor: '#272727',
 };
 
 const App = () => (
-  <SafeAreaView style={styles.safeArea}>
+  <SafeAreaView style={styles}>
     <MainStack />
   </SafeAreaView>
 );

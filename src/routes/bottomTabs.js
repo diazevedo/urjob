@@ -12,10 +12,10 @@ const Bottom = () => {
   return (
     <Tabs.Navigator
       tabBarOptions={{
-        activeTintColor: '#000AFF',
-        inactiveTintColor: '#000',
+        activeTintColor: '#6379E9',
+        inactiveTintColor: '#fff',
         style: {
-          backgroundColor: '#fff',
+          backgroundColor: '#272727',
           paddingTop: 5,
           paddingBottom: 10,
           height: 70,
