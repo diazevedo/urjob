@@ -3,7 +3,7 @@ import React from 'react';
 
 import * as S from './styles';
 
-const LeftActions = (progress, dragX) => {
+const LeftActions = () => {
   return (
     <S.WrapperActionButtons>
       <S.ActionButton color="#5EC28E">

@@ -203,6 +203,7 @@ const Main = () => {
         renderItem={({ item }) => (
           <JobCard
             position={item.title.replace(/(<([^>]+)>)/gi, '')}
+            id={item.id}
             key={item.id.toString()}
             city={item.location.area[3] || 'Australia'}
             state={item.location.area[1] || 'Australia'}

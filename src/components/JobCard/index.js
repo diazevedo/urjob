@@ -1,21 +1,37 @@
 import React from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import Icon from 'react-native-vector-icons/Feather';
+import IconFontAWS from 'react-native-vector-icons/FontAwesome';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import LeftActions from '~/components/Leftactions';
+import TouchableWithIcon from '~/components/TouchableWithIcon';
 
-import Logo from '~/assets/images/tasit-logo.png';
 import colors from '~/styles/colors';
 
 import * as C from './styles';
 
-const JobCard = ({ company, date, icon, position, city, state, tag }) => {
+const JobCard = ({ id, company, date, position, city, state, tag }) => {
+  /** it is just for now, then it will come from a global state. */
+  const [favorite, setFavorite] = React.useState(false);
+  const navigation = useNavigation();
+
+  const onPressToFavorite = (e) => {
+    setFavorite((prevState) => !prevState);
+  };
+
   return (
     <C.Wrapper>
       <Swipeable renderLeftActions={LeftActions}>
-        <C.View>
+        <C.ClickableView
+          onPress={() =>
+            navigation.navigate('Job', {
+              title: position,
+            })
+          }>
           <C.Line>
             <C.WrapperCompanyDays>
               <C.Company color={colors.primary}>{company}</C.Company>
@@ -23,7 +39,17 @@ const JobCard = ({ company, date, icon, position, city, state, tag }) => {
                 1 day ago
               </C.Company>
             </C.WrapperCompanyDays>
-            <C.CompanyLogo source={Logo} resizeMode={'cover'} />
+            <TouchableWithIcon
+              custom={true}
+              icon="heart"
+              size={30}
+              onPress={onPressToFavorite}>
+              {favorite ? (
+                <IconFontAWS name="heart" color="#000AFF" size={30} />
+              ) : (
+                <IconFontAWS name="heart-o" color="#000122" size={30} />
+              )}
+            </TouchableWithIcon>
           </C.Line>
           <C.Company color={colors.fifth} size="18">
             {position}
@@ -40,15 +66,8 @@ const JobCard = ({ company, date, icon, position, city, state, tag }) => {
                 <C.Tags color="rgba(230, 86, 90, 1)">{tag}</C.Tags>
               </C.TagWrapper>
             )}
-
-            {/* <C.TagWrapper color="rgba(94, 194, 142, 0.2)">
-              <C.Tags color="rgba(94, 194, 142, 1)">data visualization</C.Tags>
-            </C.TagWrapper>
-            <C.TagWrapper color="rgba(99, 121, 233, .2)">
-              <C.Tags color="rgba(99, 121, 233, 1)">remote</C.Tags>
-            </C.TagWrapper> */}
           </C.TagsLine>
-        </C.View>
+        </C.ClickableView>
       </Swipeable>
     </C.Wrapper>
   );

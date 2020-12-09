@@ -3,18 +3,25 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import PropTypes from 'prop-types';
 
-const TouchableWithIcon = ({ icon, color, size }) => {
+const TouchableWithIcon = ({
+  icon,
+  color,
+  size,
+  custom = false,
+  children = null,
+  onPress = () => {},
+}) => {
   return (
-    <TouchableOpacity>
-      <Icon name={icon} color={color} size={size} />
+    <TouchableOpacity onPress={() => onPress()}>
+      {!custom ? <Icon name={icon} color={color} size={size} /> : children}
     </TouchableOpacity>
   );
 };
 
 TouchableWithIcon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired,
+  icon: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.number,
 };
 
 export default TouchableWithIcon;

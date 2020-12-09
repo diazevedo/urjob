@@ -1,16 +1,20 @@
 import styled from 'styled-components/native';
 
 import colors from '~/styles/colors';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export const Wrapper = styled.View`
   width: 100%;
   background-color: ${colors.fourth};
+
   margin-bottom: 20px;
   border-radius: 6px;
 `;
-export const View = styled.View`
+
+export const ClickableView = styled(TouchableWithoutFeedback)`
   width: 100%;
-  background-color: ${colors.fourth};
+  /* background-color: ${colors.fourth}; */
+   background-color: #909;
   border-radius: 6px;
   padding: 10px 16px;
 `;
