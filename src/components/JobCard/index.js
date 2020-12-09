@@ -30,6 +30,7 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
           onPress={() =>
             navigation.navigate('Job', {
               title: position,
+              id,
             })
           }>
           <C.Line>
@@ -45,7 +46,7 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
               size={30}
               onPress={onPressToFavorite}>
               {favorite ? (
-                <IconFontAWS name="heart" color="#000AFF" size={30} />
+                <IconFontAWS name="heart" color="#0006A0" size={30} />
               ) : (
                 <IconFontAWS name="heart-o" color="#000122" size={30} />
               )}

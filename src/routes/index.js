@@ -33,7 +33,7 @@ const MainStack = () => (
           headerStyle: {
             shadowColor: 'transparent',
             height: 70,
-            borderBottomColor: '#000',
+            borderBottomColor: '#EBF0FF',
             borderBottomWidth: 1,
           },
           headerLeft: false,

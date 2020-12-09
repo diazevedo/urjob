@@ -18,7 +18,8 @@ export const Title = styled.Text`
   margin-top: 10px;
   margin-left: 15px;
   font-size: 26px;
-  color: #000122;
+  color: #0006a0;
   flex: 1;
   font-weight: 700;
+  font-family: 'Abel-Regular';
 `;

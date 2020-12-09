@@ -6,15 +6,13 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 export const Wrapper = styled.View`
   width: 100%;
   background-color: ${colors.fourth};
-
   margin-bottom: 20px;
   border-radius: 6px;
 `;
 
 export const ClickableView = styled(TouchableWithoutFeedback)`
   width: 100%;
-  /* background-color: ${colors.fourth}; */
-   background-color: #909;
+  background-color: ${colors.fourth};
   border-radius: 6px;
   padding: 10px 16px;
 `;
