@@ -28,6 +28,6 @@ export const ActionButton = styled(TouchableOpacity)`
 
 export const TextAction = styled(Animated.Text)`
   color: ${colors.fourth};
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
   font-size: 14px;
 `;

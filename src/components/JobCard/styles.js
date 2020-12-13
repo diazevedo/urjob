@@ -38,7 +38,9 @@ export const Company = styled.Text`
   opacity: ${(props) => (props.opacity ? props.opacity : 1)};
   margin-bottom: 10px;
   margin-right: 10px;
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
+  /* font-weight: bold; */
+  /* font-family: 'Advent Pro'; */
 `;
 
 export const CompanyLogo = styled.Image`
@@ -54,7 +56,7 @@ export const LocationLine = styled.View`
 `;
 
 export const LocationText = styled.Text`
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
   margin-left: 10px;
   font-size: 16px;
   color: ${colors.third};

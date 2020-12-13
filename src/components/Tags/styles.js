@@ -10,5 +10,5 @@ export const TagWrapper = styled.View`
 
 export const Tags = styled.Text`
   color: ${(props) => props.color};
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
 `;

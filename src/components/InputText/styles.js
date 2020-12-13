@@ -8,5 +8,6 @@ export const TextInput = styled.TextInput.attrs({
   margin-left: 10px;
   color: ${colors.primary};
   font-size: 18px;
-  font-family: 'Abel-Regular';
+  font-family: 'Advent Pro';
+  font-weight: bold;
 `;

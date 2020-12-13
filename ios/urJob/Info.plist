@@ -70,8 +70,12 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>Abel-Regular.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>AdventPro-Bold.ttf</string>
+		<string>AdventPro-Medium.ttf</string>
+		<string>AdventPro-Regular.ttf</string>
+		<string>AdventPro-SemiBold.ttf</string>
+		<string>Abel-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -29,13 +29,13 @@ export const Company = styled.Text`
   color: ${(props) => props.color};
   font-size: ${(props) => (props.size ? `${props.size}px` : '24px')};
   opacity: ${(props) => (props.opacity ? props.opacity : 1)};
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
   flex: 1;
 `;
 
 export const Salary = styled.Text`
   font-size: 16px;
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
   margin-top: 10px;
 `;
 
@@ -43,7 +43,7 @@ export const Website = styled.Text`
   font-size: 16px;
   margin-top: 15px;
   margin-bottom: 10px;
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
   color: #000122;
 `;
 

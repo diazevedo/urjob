@@ -10,5 +10,5 @@ export const Button = styled(TouchableOpacity)`
 export const Text = styled.Text`
   color: ${(props) => (props.isActive === 1 ? colors.primary : colors.third)};
   font-size: 16px;
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
 `;

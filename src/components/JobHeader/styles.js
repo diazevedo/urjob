@@ -21,5 +21,5 @@ export const Title = styled.Text`
   color: #0006a0;
   flex: 1;
   font-weight: 700;
-  font-family: 'Abel-Regular';
+  font-family: 'Abel';
 `;
