@@ -22,6 +22,11 @@ TouchableWithIcon.propTypes = {
   icon: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.number,
+  custom: PropTypes.bool,
+  children: PropTypes.element,
+  onPress: PropTypes.func,
 };
+
+TouchableWithIcon.defaultProps = {};
 
 export default TouchableWithIcon;

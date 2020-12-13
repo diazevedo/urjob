@@ -1,6 +1,10 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
+
+import Tags from '~/components/Tags';
+import Button from '~/components/Button';
 
 import * as S from './styles';
 const data = [
@@ -173,16 +177,27 @@ const data = [
     __CLASS__: 'Adzuna::API::Response::Job',
   },
 ];
+
+const txt = `You will be one of the first hires at Tasit Labs, and my hope is that you want to grow with the company in a maaaajor way. Our tech stack is all "modern" JavaScript (React, React Native, Node.js, Serverless, AWS) and blockchain (Ethereum to start).
+
+Tasit Labs cares very much about inclusion, and we aim to hire lots of people from diverse backgrounds. Many startups say they care about inclusion, but we actually do!`;
+
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+
+const LATITUDE_DELTA = 0.0222;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+console.log({ LONGITUDE_DELTA, LATITUDE_DELTA });
+
 const Job = ({ navigation, route }) => {
   const [job, setJob] = React.useState({});
   const [loading, setLoading] = React.useState(true);
-  console.tron.log(route);
 
   React.useEffect(() => {
     const jobInfo = data.find((item) => item.id === route.params.id);
     setJob(jobInfo);
     setLoading(false);
-    console.tron.log({ jobInfo });
   }, [route.params.id, loading]);
 
   return (
@@ -211,6 +226,40 @@ const Job = ({ navigation, route }) => {
         <Icon name="navigation" size={18} color="#000122" />
         <S.Address>2045 W Grand Ave Ste B, Chicago</S.Address>
       </S.Line>
+      <S.MapWrapper>
+        <S.Map
+          initialRegion={{
+            latitude: -33.8886656,
+            longitude: 151.2472576,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
+        />
+        <S.Mask />
+        <S.ViewButton>
+          <S.ShowMap>
+            <S.TextButton>Show on map</S.TextButton>
+          </S.ShowMap>
+        </S.ViewButton>
+      </S.MapWrapper>
+      <S.LineNoFullWidth>
+        <S.Label>Job Type</S.Label>
+        <S.Info>Full-time</S.Info>
+      </S.LineNoFullWidth>
+      <S.LineNoFullWidth>
+        <S.Label>Experience</S.Label>
+        <S.Info>2+ years</S.Info>
+      </S.LineNoFullWidth>
+      <S.LineNoFullWidth>
+        <Tags text="data visualization" color="94, 131, 225" />
+        <Tags text="UX/UI Design" color="94, 131, 225" />
+        <Tags text="sketch" color="94, 131, 225" />
+      </S.LineNoFullWidth>
+      <S.LineNoFullWidth>
+        <S.Description>{txt}</S.Description>
+      </S.LineNoFullWidth>
+
+      <Button text="Apply now" />
     </S.Wrapper>
   );
 };

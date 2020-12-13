@@ -9,6 +9,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import LeftActions from '~/components/Leftactions';
 import TouchableWithIcon from '~/components/TouchableWithIcon';
+import Tags from '~/components/Tags';
 
 import colors from '~/styles/colors';
 
@@ -62,11 +63,7 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
             </C.LocationText>
           </C.LocationLine>
           <C.TagsLine>
-            {tag && (
-              <C.TagWrapper color="rgba(230, 86, 90, 0.2)">
-                <C.Tags color="rgba(230, 86, 90, 1)">{tag}</C.Tags>
-              </C.TagWrapper>
-            )}
+            {tag && <Tags text={tag} color="230, 86, 90" />}
           </C.TagsLine>
         </C.ClickableView>
       </Swipeable>
