@@ -30,6 +30,7 @@ export const WrapperCompanyDays = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
 `;
 
 export const Company = styled.Text`

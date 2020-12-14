@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 
+import { formatDistanceToNow } from 'date-fns';
+
 import Icon from 'react-native-vector-icons/Feather';
 
 import Tags from '~/components/Tags';
@@ -21,6 +23,7 @@ const Job = ({ navigation, route }) => {
 
   console.tron.log(route.params.job.latitude);
   console.tron.log(route.params.job);
+
   React.useEffect(() => {
     // setLoading(false);
   }, [route.params.job]);
@@ -40,7 +43,7 @@ const Job = ({ navigation, route }) => {
           <S.Line>
             <S.Company color="#000122">{job.company.display_name}</S.Company>
             <S.DaysAgo opacity={0.6} color="#000122" size={16}>
-              1 day ago
+              {formatDistanceToNow(new Date(job.created), new Date())}
             </S.DaysAgo>
           </S.Line>
           {job.salary_max && (

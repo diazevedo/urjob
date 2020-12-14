@@ -208,6 +208,7 @@ const Main = () => {
             city={item.location.area[3] || 'Australia'}
             state={item.location.area[1] || 'Australia'}
             company={item.company.display_name}
+            created={item.created}
             tag={
               item.category.label === 'Unknown' ? false : item.category.label
             }
