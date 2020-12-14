@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-
+import { FlatList, ActivityIndicator } from 'react-native';
+import { APP_ID, APP_KEY } from '@env';
 import api from '~/services/api';
 import JobSearch from '~/parts/JobSearch';
 import SortButtons from '~/parts/SortButtons';
@@ -181,13 +181,70 @@ import * as C from './styles';
 
 const Main = () => {
   const [positions, setPositions] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [searchedPosition, setSearchedPosition] = React.useState('');
+  const [sortBy, setSortBy] = React.useState('date'); // relevance, salary
+  const [page, setPage] = React.useState(1); // date, salary
+
+  const cleanInput = () => {
+    setSearchedPosition('');
+  };
+
+  const handleOnPressSortBy = (text) => {
+    setLoading(true);
+    setPage(1);
+    setSortBy(text);
+    // loadData();
+  };
+
   const loadData = React.useCallback(async () => {
-    // const response = await api.get('', {
-    //   params: { what: 'javascript developer' },
-    // });
-    // console.tron.log(response.data.results);
-    setPositions(data);
-  }, []);
+    console.tron.log({ page });
+    console.tron.log({
+      url: `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=7&content-type=application/json`,
+    });
+
+    try {
+      const response = await api.get(
+        `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=7&content-type=application/json`,
+        {
+          params: { what: searchedPosition, sort_by: sortBy },
+        },
+      );
+      // console.tron.log(response);
+      // setPositions(data);
+
+      setPositions((old) => {
+        console.tron.log({ old });
+        console.tron.log({ new: response.data.results });
+        return page > 1
+          ? [...old, ...response.data.results]
+          : response.data.results;
+      });
+      setLoading(false);
+      // const newPage = page + 1;
+    } catch (error) {
+      console.tron.log(error);
+    }
+  }, [page, sortBy]);
+
+  const incrementPage = () => {
+    const newPage = page + 1;
+    setPage(newPage);
+  };
+
+  // const refresh = () => {
+  //   setPage(1);
+  //   console.tron.log('rrrrr');
+  //   setLoading(true);
+  //   loadData();
+  // };
+
+  const loadMore = () => {
+    console.tron.log('loadMore');
+    incrementPage();
+    // setLoading(true);
+    // loadData();
+  };
 
   React.useEffect(() => {
     loadData();
@@ -195,28 +252,43 @@ const Main = () => {
 
   return (
     <C.Wrapper>
-      <JobSearch />
-      <SortButtons />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={positions}
-        renderItem={({ item }) => (
-          <JobCard
-            position={item.title.replace(/(<([^>]+)>)/gi, '')}
-            id={item.id}
-            key={item.id.toString()}
-            city={item.location.area[3] || 'Australia'}
-            state={item.location.area[1] || 'Australia'}
-            company={item.company.display_name}
-            created={item.created}
-            tag={
-              item.category.label === 'Unknown' ? false : item.category.label
-            }
-            job={item}
-          />
-        )}
-        keyExtractor={(item) => item.id.toString()}
+      <JobSearch
+        initialValue={searchedPosition}
+        clean={cleanInput}
+        onChangeText={setSearchedPosition}
+        search={loadData}
       />
+      <SortButtons handleOnPressSortBy={handleOnPressSortBy} />
+      {loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={positions}
+          renderItem={({ item }) => (
+            <JobCard
+              position={item.title.replace(/(<([^>]+)>)/gi, '')}
+              id={item.id}
+              key={item.id.toString()}
+              city={item.location.area[3] || 'Australia'}
+              state={item.location.area[1] || 'Australia'}
+              company={item.company.display_name}
+              created={item.created}
+              tag={
+                item.category.label === 'Unknown' ? false : item.category.label
+              }
+              job={item}
+            />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          onEndReached={loadMore}
+          // refreshing={loading}
+          // onRefresh={refresh}
+          onEndReachedThreshold={0.5}
+          // extraData={loading}
+          // ListFooterComponent={() => <ActivityIndicator size="large" />}
+        />
+      )}
     </C.Wrapper>
   );
 };

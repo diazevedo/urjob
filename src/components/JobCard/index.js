@@ -42,17 +42,19 @@ const JobCard = ({ id, company, created, position, city, state, tag, job }) => {
                 {formatDistanceToNow(new Date(created))}
               </C.DaysAgo>
             </C.WrapperCompanyDays>
-            <TouchableWithIcon
-              custom={true}
-              icon="heart"
-              size={30}
-              onPress={onPressToFavorite}>
-              {favorite ? (
-                <IconFontAWS name="heart" color="#0006A0" size={30} />
-              ) : (
-                <IconFontAWS name="heart-o" color="#000122" size={30} />
-              )}
-            </TouchableWithIcon>
+            <C.IconFavourite>
+              <TouchableWithIcon
+                custom={true}
+                icon="heart"
+                size={30}
+                onPress={onPressToFavorite}>
+                {favorite ? (
+                  <IconFontAWS name="heart" color="#0006A0" size={30} />
+                ) : (
+                  <IconFontAWS name="heart-o" color="#000122" size={30} />
+                )}
+              </TouchableWithIcon>
+            </C.IconFavourite>
           </C.Line>
           <C.DaysAgo color={colors.fifth} size="18">
             {position}

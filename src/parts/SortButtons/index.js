@@ -3,19 +3,22 @@ import SortButton from '~/components/SortButton';
 
 import * as C from './styles';
 
-const SortButtons = () => {
+const SortButtons = ({ handleOnPressSortBy }) => {
+  const [selected, setSelected] = React.useState(0);
+
   return (
     <C.Wrapper>
-      <C.ButtonWrapper>
-        <SortButton text="Newest" />
-      </C.ButtonWrapper>
-
-      <C.ButtonWrapper>
-        <SortButton text="Popular" isActive={1} />
-      </C.ButtonWrapper>
-      <C.ButtonWrapper isLast={1}>
-        <SortButton text="Nearby" />
-      </C.ButtonWrapper>
+      {['date', 'relevance', 'salary'].map((item, index) => (
+        <C.ButtonWrapper key={item.toString()}>
+          <SortButton
+            text={item}
+            handleOnPressSortBy={handleOnPressSortBy}
+            setActive={setSelected}
+            isActive={selected === index ? 1 : 0}
+            idItem={index}
+          />
+        </C.ButtonWrapper>
+      ))}
     </C.Wrapper>
   );
 };

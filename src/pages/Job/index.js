@@ -21,9 +21,6 @@ const Job = ({ navigation, route }) => {
   const [job, setJob] = React.useState(route.params.job);
   const [loading, setLoading] = React.useState(true);
 
-  console.tron.log(route.params.job.latitude);
-  console.tron.log(route.params.job);
-
   React.useEffect(() => {
     // setLoading(false);
   }, [route.params.job]);
@@ -56,7 +53,7 @@ const Job = ({ navigation, route }) => {
           )}
 
           <S.Line isLast>
-            <S.Website>company website</S.Website>
+            <S.Website onPress={() => handleApplyPress()}>ad details</S.Website>
           </S.Line>
           <S.AddressLine>
             <Icon name="navigation" size={18} color="#000122" />

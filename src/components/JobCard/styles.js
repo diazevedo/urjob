@@ -25,12 +25,13 @@ export const Line = styled.View`
 `;
 
 export const WrapperCompanyDays = styled.View`
-  width: 50%;
   margin-right: 30px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   flex: 1;
+  padding-bottom: 5px;
 `;
 
 export const Company = styled.Text`
@@ -46,10 +47,7 @@ export const DaysAgo = styled(Company)`
   font-family: 'Abel';
 `;
 
-export const CompanyLogo = styled.Image`
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
+export const IconFavourite = styled.View`
   align-self: flex-start;
 `;
 
