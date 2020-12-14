@@ -17,18 +17,11 @@ const JobHeader = () => {
       <S.WrapperLeftContent>
         <TouchableWithIcon
           icon="chevron-left"
-          color="#000122"
+          color="#0006a0"
           size={30}
           onPress={navigation.goBack}
         />
-        <S.Title
-          numberOfLines={1}
-          ellipsizeMode="tail"
-          onPress={() =>
-            console.log(
-              'it will open a card to show the complete position text',
-            )
-          }>
+        <S.Title numberOfLines={1} ellipsizeMode="tail">
           {route.params.title}
         </S.Title>
       </S.WrapperLeftContent>

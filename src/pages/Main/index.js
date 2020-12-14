@@ -211,6 +211,7 @@ const Main = () => {
             tag={
               item.category.label === 'Unknown' ? false : item.category.label
             }
+            job={item}
           />
         )}
         keyExtractor={(item) => item.id.toString()}

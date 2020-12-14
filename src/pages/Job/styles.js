@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components/native';
 import MapView from 'react-native-maps';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const Wrapper = styled.ScrollView`
   padding: 10px 0;
-  /* flex: 1; */
+  height: 100%;
+  flex: 1;
   background-color: #fff;
 `;
 
@@ -128,7 +130,7 @@ export const TagsLine = styled(LineNoFullWidth)`
 export const Description = styled.Text`
   color: #000122;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 25px;
   text-align: justify;
   font-family: 'Abel';
   padding-bottom: 20px;

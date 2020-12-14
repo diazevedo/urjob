@@ -15,7 +15,7 @@ import colors from '~/styles/colors';
 
 import * as C from './styles';
 
-const JobCard = ({ id, company, date, position, city, state, tag }) => {
+const JobCard = ({ id, company, date, position, city, state, tag, job }) => {
   /** it is just for now, then it will come from a global state. */
   const [favorite, setFavorite] = React.useState(false);
   const navigation = useNavigation();
@@ -32,6 +32,7 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
             navigation.navigate('Job', {
               title: position,
               id,
+              job,
             })
           }>
           <C.Line>
