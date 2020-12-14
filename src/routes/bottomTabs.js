@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TouchableOpacity } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Feather';
 
 import Main from '~/pages/Main';
@@ -21,15 +21,6 @@ const Bottom = () => {
           height: 70,
         },
         keyboardHidesTabBar: true,
-        // headerStyle: {
-        //   height: 200,
-        //   backgroundColor: '#025bbf',
-        // },
-        headerLeft: ({ onPress }) => (
-          <TouchableOpacity onPress={() => onPress()}>
-            <Icon name="chevron-left" size={30} color="#eeee88" />
-          </TouchableOpacity>
-        ),
       }}>
       <Tabs.Screen
         name="Main"
@@ -46,7 +37,7 @@ const Bottom = () => {
         name="Favorites"
         component={Favorites}
         options={{
-          tabBarLabel: 'favorite',
+          tabBarLabel: 'favorites',
           tabBarVisible: true,
           tabBarIcon: ({ color }) => (
             <Icon name="heart" size={26} color={color} />

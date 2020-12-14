@@ -208,9 +208,9 @@ const Job = ({ navigation, route }) => {
         ) : (
           <>
             <S.Company color="#000122">{job.company.display_name}</S.Company>
-            <S.Company opacity={0.6} color="#000122" size={16}>
+            <S.DaysAgo opacity={0.6} color="#000122" size={16}>
               1 day ago
-            </S.Company>
+            </S.DaysAgo>
           </>
         )}
       </S.Line>
@@ -222,10 +222,10 @@ const Job = ({ navigation, route }) => {
       <S.Line isLast>
         <S.Website>company website</S.Website>
       </S.Line>
-      <S.Line style={{ justifyContent: 'flex-start' }}>
+      <S.AddressLine>
         <Icon name="navigation" size={18} color="#000122" />
         <S.Address>2045 W Grand Ave Ste B, Chicago</S.Address>
-      </S.Line>
+      </S.AddressLine>
       <S.MapWrapper>
         <S.Map
           initialRegion={{
@@ -250,14 +250,14 @@ const Job = ({ navigation, route }) => {
         <S.Label>Experience</S.Label>
         <S.Info>2+ years</S.Info>
       </S.LineNoFullWidth>
-      <S.LineNoFullWidth>
+      <S.TagsLine>
         <Tags text="data visualization" color="94, 131, 225" />
         <Tags text="UX/UI Design" color="94, 131, 225" />
         <Tags text="sketch" color="94, 131, 225" />
-      </S.LineNoFullWidth>
-      <S.LineNoFullWidth>
+      </S.TagsLine>
+      <S.TagsLine>
         <S.Description>{txt}</S.Description>
-      </S.LineNoFullWidth>
+      </S.TagsLine>
 
       <Button text="Apply now" />
     </S.Wrapper>

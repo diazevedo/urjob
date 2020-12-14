@@ -38,9 +38,11 @@ export const Company = styled.Text`
   opacity: ${(props) => (props.opacity ? props.opacity : 1)};
   margin-bottom: 10px;
   margin-right: 10px;
+  font-family: 'Advent Pro';
+`;
+
+export const DaysAgo = styled(Company)`
   font-family: 'Abel';
-  /* font-weight: bold; */
-  /* font-family: 'Advent Pro'; */
 `;
 
 export const CompanyLogo = styled.Image`

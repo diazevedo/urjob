@@ -37,9 +37,9 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
           <C.Line>
             <C.WrapperCompanyDays>
               <C.Company color={colors.primary}>{company}</C.Company>
-              <C.Company color={colors.third} size={14} opacity={0.6}>
+              <C.DaysAgo color={colors.third} size={14} opacity={0.6}>
                 1 day ago
-              </C.Company>
+              </C.DaysAgo>
             </C.WrapperCompanyDays>
             <TouchableWithIcon
               custom={true}
@@ -53,9 +53,9 @@ const JobCard = ({ id, company, date, position, city, state, tag }) => {
               )}
             </TouchableWithIcon>
           </C.Line>
-          <C.Company color={colors.fifth} size="18">
+          <C.DaysAgo color={colors.fifth} size="18">
             {position}
-          </C.Company>
+          </C.DaysAgo>
           <C.LocationLine>
             <Icon name="navigation" size={20} color={colors.third} />
             <C.LocationText color={colors.third}>

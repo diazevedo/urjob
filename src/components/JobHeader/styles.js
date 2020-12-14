@@ -20,6 +20,5 @@ export const Title = styled.Text`
   font-size: 26px;
   color: #0006a0;
   flex: 1;
-  font-weight: 700;
   font-family: 'Abel';
 `;

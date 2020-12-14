@@ -2,12 +2,10 @@ import styled, { css } from 'styled-components/native';
 import MapView from 'react-native-maps';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const Wrapper = styled.View`
-  flex-wrap: wrap;
+export const Wrapper = styled.ScrollView`
   padding: 10px 0;
-  flex: 1;
+  /* flex: 1; */
   background-color: #fff;
-  /* border: 1px solid black; */
 `;
 
 export const Line = styled.View`
@@ -30,35 +28,47 @@ export const Company = styled.Text`
   font-size: ${(props) => (props.size ? `${props.size}px` : '24px')};
   opacity: ${(props) => (props.opacity ? props.opacity : 1)};
   font-family: 'Abel';
+  flex: 3;
+`;
+
+export const DaysAgo = styled(Company)`
   flex: 1;
 `;
 
 export const Salary = styled.Text`
   font-size: 16px;
-  font-family: 'Abel';
+  font-family: 'Advent Pro';
   margin-top: 10px;
+  opacity: 0.8;
 `;
 
 export const Website = styled.Text`
-  font-size: 16px;
-  margin-top: 15px;
+  font-size: 14px;
+  margin-top: 5px;
   margin-bottom: 10px;
   font-family: 'Abel';
-  color: #000122;
+  color: rgba(0, 1, 34, 0.6);
+`;
+
+export const AddressLine = styled(Line)`
+  justify-content: flex-start;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;
 
 export const Address = styled.Text`
-  margin-top: 10px;
-  font-size: 16px;
-  color: #000122;
   margin-left: 10px;
-  opacity: 0.6;
+  font-size: 18px;
+  color: rgba(0, 1, 34, 0.6);
+  font-family: 'Abel';
 `;
 
 export const MapWrapper = styled.View`
   height: 100px;
   width: 100%;
   margin-bottom: 20px;
+
+  flex: 1;
 `;
 
 export const Map = styled(MapView)`
@@ -71,6 +81,7 @@ export const Mask = styled.View`
   height: 100%;
   position: absolute;
 `;
+
 export const ViewButton = styled.View`
   width: 100px;
   height: 30px;
@@ -98,20 +109,27 @@ export const LineNoFullWidth = styled(Line)`
 `;
 
 export const Label = styled.Text`
-  color: #000122;
-  font-size: 14px;
+  color: #000;
+  font-size: 18px;
   width: 100px;
+  font-family: 'Abel';
 `;
 
 export const Info = styled.Text`
-  color: #000122;
-  font-size: 14px;
-  opacity: 0.6;
+  color: rgba(0, 1, 34, 0.6);
+  font-size: 16px;
+  font-family: 'Advent Pro';
+`;
+
+export const TagsLine = styled(LineNoFullWidth)`
+  padding-top: 15px;
 `;
 
 export const Description = styled.Text`
   color: #000122;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 22px;
   text-align: justify;
+  font-family: 'Abel';
+  padding-bottom: 20px;
 `;

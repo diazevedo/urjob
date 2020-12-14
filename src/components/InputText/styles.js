@@ -9,5 +9,4 @@ export const TextInput = styled.TextInput.attrs({
   color: ${colors.primary};
   font-size: 18px;
   font-family: 'Advent Pro';
-  font-weight: bold;
 `;
