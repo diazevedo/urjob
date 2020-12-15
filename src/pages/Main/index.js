@@ -177,6 +177,8 @@ const data = [
   },
 ];
 
+import { useSelector } from 'react-redux';
+
 import * as C from './styles';
 
 const Main = () => {
@@ -185,6 +187,9 @@ const Main = () => {
   const [searchedPosition, setSearchedPosition] = React.useState('');
   const [sortBy, setSortBy] = React.useState('date'); // relevance, salary
   const [page, setPage] = React.useState(1); // date, salary
+
+  const favourites = useSelector((state) => state.favourite);
+  console.tron.log(favourites);
 
   const cleanInput = () => {
     setSearchedPosition('');
@@ -198,34 +203,25 @@ const Main = () => {
   };
 
   const loadData = React.useCallback(async () => {
-    console.tron.log({ page });
-    console.tron.log({
-      url: `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=7&content-type=application/json`,
-    });
-
     try {
-      const response = await api.get(
-        `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=7&content-type=application/json`,
-        {
-          params: { what: searchedPosition, sort_by: sortBy },
-        },
-      );
-      // console.tron.log(response);
-      // setPositions(data);
+      // const response = await api.get(
+      //   `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=7&content-type=application/json`,
+      //   {
+      //     params: { what: searchedPosition, sort_by: sortBy },
+      //   },
+      // );
 
-      setPositions((old) => {
-        console.tron.log({ old });
-        console.tron.log({ new: response.data.results });
-        return page > 1
-          ? [...old, ...response.data.results]
-          : response.data.results;
-      });
+      // setPositions((old) => {
+      //   console.tron.log({ old });
+      //   console.tron.log({ new: response.data.results });
+      //   return page > 1
+      //     ? [...old, ...response.data.results]
+      //     : response.data.results;
+      // });
       setLoading(false);
-      // const newPage = page + 1;
-    } catch (error) {
-      console.tron.log(error);
-    }
-  }, [page, sortBy]);
+      setPositions(data);
+    } catch (error) {}
+  }, [page, sortBy, searchedPosition]);
 
   const incrementPage = () => {
     const newPage = page + 1;
