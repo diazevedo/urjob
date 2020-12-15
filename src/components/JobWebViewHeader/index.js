@@ -12,12 +12,14 @@ const JobWebViewHeader = () => {
 
   return (
     <S.Container>
-      <TouchableWithIcon
-        icon="chevron-left"
-        color="#0006a0"
-        size={30}
-        onPress={navigation.goBack}
-      />
+      <S.View>
+        <TouchableWithIcon
+          icon="chevron-left"
+          color="#0006a0"
+          size={30}
+          onPress={navigation.goBack}
+        />
+      </S.View>
       <S.WrapperLeftContent>
         <S.Title numberOfLines={1} ellipsizeMode="tail">
           {title.replace(/(<([^>]+)>)/gi, '')}

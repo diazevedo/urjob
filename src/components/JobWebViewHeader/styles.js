@@ -4,6 +4,10 @@ export const Container = styled.View`
   flex-direction: row;
 `;
 
+export const View = styled.View`
+  margin-left: -10px;
+`;
+
 export const WrapperLeftContent = styled.View`
   width: 100%;
   align-self: flex-end;

@@ -1,64 +1,66 @@
-import 'react-native-gesture-handler';
-
 import React from 'react';
 import { StatusBar } from 'react-native';
-import Header from '~/components/JobHeader';
-import JobViewHeader from '~/components/JobWebViewHeader';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Icon from 'react-native-vector-icons/Feather';
 
 import '~/config/ReactotronConfig';
 
 const Stack = createStackNavigator();
+const Tabs = createBottomTabNavigator();
 
-import Job from '~/pages/Job';
-import JobWebView from '~/pages/JobWebView';
+import Favourites from '~/pages/Favourites';
+import JobsPages from './jobsPages';
+import Header from '~/components/JobHeader';
 
-import Bottom from './bottomTabs';
+/**
+ * TODO
+ * Create an specific stack navigator to Main, Job and JobWebView
+ */
 
 const MainStack = () => (
   <NavigationContainer>
     <StatusBar barStyle="light-content" />
-    <Stack.Navigator>
-      <Stack.Screen
+
+    <Tabs.Navigator
+      tabBarOptions={{
+        activeTintColor: '#6379E9',
+        inactiveTintColor: '#fff',
+        style: {
+          backgroundColor: '#272727',
+          paddingTop: 5,
+          paddingBottom: 10,
+          height: 70,
+        },
+        keyboardHidesTabBar: true,
+      }}>
+      <Tabs.Screen
         name="Main"
-        component={Bottom}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Job"
-        component={Job}
+        component={JobsPages}
         options={{
-          headerTitleAlign: 'left',
-          headerTitle: (props) => <Header {...props} />,
-          headerShown: true,
-          headerStyle: {
-            shadowColor: 'transparent',
-            height: 70,
-            borderBottomColor: '#EBF0FF',
-            borderBottomWidth: 1,
-          },
-          headerLeft: false,
+          tabBarLabel: 'Home',
+          tabBarVisible: true,
+          tabBarIcon: ({ color }) => (
+            <Icon name="grid" size={26} color={color} />
+          ),
         }}
       />
-      <Stack.Screen
-        name="JobWebView"
-        component={JobWebView}
+      <Tabs.Screen
+        name="Favourites"
+        component={Favourites}
         options={{
-          headerTitle: (props) => <JobViewHeader {...props} />,
           headerShown: true,
-          headerStyle: {
-            shadowColor: 'transparent',
-            height: 70,
-            borderBottomColor: '#EBF0FF',
-            borderBottomWidth: 1,
-          },
-          headerLeft: false,
-          headerBackTitleVisible: false,
-          // headerLeft: 'left',
+          tabBarLabel: 'Favourites',
+          tabBarVisible: true,
+          tabBarIcon: ({ color }) => (
+            <Icon name="heart" size={26} color={color} />
+          ),
         }}
       />
-    </Stack.Navigator>
+    </Tabs.Navigator>
   </NavigationContainer>
 );
 
