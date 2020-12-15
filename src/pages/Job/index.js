@@ -3,6 +3,8 @@ import { Dimensions } from 'react-native';
 
 import { formatDistanceToNow } from 'date-fns';
 
+import { useSelector } from 'react-redux';
+
 import Icon from 'react-native-vector-icons/Feather';
 
 import Tags from '~/components/Tags';
@@ -17,19 +19,15 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const Job = ({ navigation, route }) => {
-  const [job, setJob] = React.useState(route.params.job);
+const Job = ({ navigation }) => {
+  // const [job, setJob] = React.useState(route.params.job);
   const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    // setLoading(false);
-  }, [route.params.job]);
+  const job = useSelector((state) => state.position.current);
 
   const handleApplyPress = () => {
-    console.tron.log('cvjlnf');
     navigation.navigate('JobWebView', {
       uri: job.redirect_url,
-      title: 'Job web page',
     });
   };
 

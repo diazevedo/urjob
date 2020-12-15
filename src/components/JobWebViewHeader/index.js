@@ -1,13 +1,14 @@
 import React from 'react';
 
 import TouchableWithIcon from '~/components/TouchableWithIcon';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 import * as S from './styles';
 
 const JobWebViewHeader = () => {
-  const route = useRoute();
   const navigation = useNavigation();
+  const title = useSelector((state) => state.position.current.title);
 
   return (
     <S.Container>
@@ -19,7 +20,7 @@ const JobWebViewHeader = () => {
       />
       <S.WrapperLeftContent>
         <S.Title numberOfLines={1} ellipsizeMode="tail">
-          {route.params.title}
+          {title.replace(/(<([^>]+)>)/gi, '')}
         </S.Title>
       </S.WrapperLeftContent>
     </S.Container>

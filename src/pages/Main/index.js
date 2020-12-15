@@ -6,6 +6,8 @@ import JobSearch from '~/parts/JobSearch';
 import SortButtons from '~/parts/SortButtons';
 import JobCard from '~/components/JobCard';
 
+import { removeAll } from '~/store/modules/favourite/actions';
+
 const data = [
   {
     redirect_url:
@@ -177,8 +179,6 @@ const data = [
   },
 ];
 
-import { useSelector } from 'react-redux';
-
 import * as C from './styles';
 
 const Main = () => {
@@ -187,9 +187,6 @@ const Main = () => {
   const [searchedPosition, setSearchedPosition] = React.useState('');
   const [sortBy, setSortBy] = React.useState('date'); // relevance, salary
   const [page, setPage] = React.useState(1); // date, salary
-
-  const favourites = useSelector((state) => state.favourite);
-  console.tron.log(favourites);
 
   const cleanInput = () => {
     setSearchedPosition('');
@@ -235,16 +232,20 @@ const Main = () => {
   //   loadData();
   // };
 
-  const loadMore = () => {
-    console.tron.log('loadMore');
-    incrementPage();
-    // setLoading(true);
-    // loadData();
-  };
+  // const loadMore = () => {
+  // console.tron.log('loadMore');
+  // incrementPage();
+  // setLoading(true);
+  // loadData();
+  // };
 
   React.useEffect(() => {
     loadData();
   }, [loadData]);
+
+  // React.useEffect(() => {
+  //   dispatch(removeAll());
+  // }, [dispatch]);
 
   return (
     <C.Wrapper>
@@ -273,14 +274,15 @@ const Main = () => {
               tag={
                 item.category.label === 'Unknown' ? false : item.category.label
               }
+              onPress={() => console.tron.log('frrrrrrrr')}
               job={item}
             />
           )}
           keyExtractor={(item) => item.id.toString()}
-          onEndReached={loadMore}
+          // onEndReached={loadMore}
           // refreshing={loading}
           // onRefresh={refresh}
-          onEndReachedThreshold={0.5}
+          // onEndReachedThreshold={0.5}
           // extraData={loading}
           // ListFooterComponent={() => <ActivityIndicator size="large" />}
         />

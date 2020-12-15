@@ -11,3 +11,10 @@ export function removeJobFromFavourite({ id }) {
     payload: { id },
   };
 }
+
+export function removeAll() {
+  return {
+    type: '@favourite/REMOVE_ALL',
+    payload: {},
+  };
+}

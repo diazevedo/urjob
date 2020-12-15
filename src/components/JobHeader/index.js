@@ -1,16 +1,47 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  addJobToFavourite,
+  removeJobFromFavourite,
+} from '~/store/modules/favourite/actions';
+
 import TouchableWithIcon from '~/components/TouchableWithIcon';
 import IconFontAWS from 'react-native-vector-icons/FontAwesome';
 
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import * as S from './styles';
 
 const JobHeader = () => {
-  const route = useRoute();
   const navigation = useNavigation();
-  const favorite = false;
+  const [favourite, setFavourite] = React.useState(false);
+
+  const dispatch = useDispatch();
+
+  const job = useSelector((state) => state.position.current);
+
+  const favourites = useSelector(
+    (stateStore) => stateStore.favourite.favourites,
+  );
+
+  React.useEffect(() => {
+    const isFavourite = favourites.some((item) => item.id === job.id);
+    setFavourite(isFavourite);
+  }, [setFavourite, job.id, favourites]);
+
+  const AddToFavourite = () => {
+    setFavourite((prevState) => {
+      if (!prevState) {
+        dispatch(addJobToFavourite({ job }));
+      } else {
+        dispatch(removeJobFromFavourite({ id: job.id }));
+      }
+
+      return !prevState;
+    });
+  };
 
   return (
     <S.Container>
@@ -22,11 +53,11 @@ const JobHeader = () => {
           onPress={navigation.goBack}
         />
         <S.Title numberOfLines={1} ellipsizeMode="tail">
-          {route.params.title}
+          {job.title.replace(/(<([^>]+)>)/gi, '')}
         </S.Title>
       </S.WrapperLeftContent>
-      <TouchableWithIcon custom>
-        {favorite ? (
+      <TouchableWithIcon custom onPress={AddToFavourite}>
+        {favourite ? (
           <IconFontAWS name="heart" color="#000AFF" size={30} />
         ) : (
           <IconFontAWS name="heart-o" color="#9098B1" size={30} />
