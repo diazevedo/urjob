@@ -7,6 +7,7 @@ export const Container = styled.View`
   padding: 0 15px;
   justify-content: center;
   box-shadow: 0px 8px 6px rgba(0, 10, 255, 0.3);
+  margin-bottom: ${(props) => `${props.mgBottom}px`};
 `;
 
 export const Button = styled(TouchableOpacity)`

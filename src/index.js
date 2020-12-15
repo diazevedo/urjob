@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { StatusBar } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
@@ -18,13 +20,16 @@ const styles = {
 };
 
 const App = () => (
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <SafeAreaView style={styles}>
-        <MainStack />
-      </SafeAreaView>
-    </PersistGate>
-  </Provider>
+  <NavigationContainer>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <SafeAreaView style={styles}>
+          <StatusBar barStyle="light-content" />
+          <MainStack />
+        </SafeAreaView>
+      </PersistGate>
+    </Provider>
+  </NavigationContainer>
 );
 
 export default App;
