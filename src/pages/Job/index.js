@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, Linking } from 'react-native';
 
 import { formatDistanceToNow } from 'date-fns';
 
@@ -20,7 +20,6 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const Job = ({ navigation }) => {
-  // const [job, setJob] = React.useState(route.params.job);
   const [loading, setLoading] = React.useState(true);
 
   const job = useSelector((state) => state.position.current);
@@ -70,7 +69,12 @@ const Job = ({ navigation }) => {
             />
             <S.Mask />
             <S.ViewButton>
-              <S.ShowMap>
+              <S.ShowMap
+                onPress={() =>
+                  Linking.openURL(
+                    `http://maps.apple.com/?ll=${job.latitude},${job.longitude}&z=14`,
+                  )
+                }>
                 <S.TextButton>Show on map</S.TextButton>
               </S.ShowMap>
             </S.ViewButton>
