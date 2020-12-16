@@ -97,4 +97,4 @@ const JobCard = ({ id, company, created, position, city, state, tag, job }) => {
   );
 };
 
-export default JobCard;
+export default React.memo(JobCard);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import * as C from './styles';
 
-const InputText = ({ placeholder, initialValue = 'j', onChangeText }) => {
+const InputText = ({ placeholder, initialValue = '', onChangeText }) => {
   return (
     <C.TextInput
       placeholder={placeholder}
