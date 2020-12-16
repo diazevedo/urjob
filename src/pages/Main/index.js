@@ -1,27 +1,32 @@
 import React from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
-import { APP_ID, APP_KEY } from '@env';
-import api from '~/services/api';
+
 import JobSearch from '~/parts/JobSearch';
 import SortButtons from '~/parts/SortButtons';
 import JobCard from '~/components/JobCard';
 import EmptyPage from '~/components/EmptyPage';
+import { useSelector, useDispatch } from 'react-redux';
 
-import data from '~/services/data/mock';
+import {
+  getJobsRequest,
+  getMoreJobsRequest,
+} from '~/store/modules/jobs/actions';
 
-import prepareData from '~/utils/preparePositions';
+import { removeAll } from '~/store/modules/favourite/actions';
 
 import * as C from './styles';
 
 const Main = () => {
-  const [positions, setPositions] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
   const [loadingFooter, setLoadingFooter] = React.useState(false);
   const [searchedPosition, setSearchedPosition] = React.useState('');
   const [searchedPositionEdit, setSearchedPositionEdit] = React.useState('');
   const [sortBy, setSortBy] = React.useState('date'); // relevance, salary
   const [page, setPage] = React.useState(1); // date, salary
 
+  const dispatch = useDispatch();
+
+  const positions = useSelector((state) => state.jobs.positions);
+  const loading = useSelector((state) => state.jobs.loading);
   const handleSearchPress = () => setSearchedPosition(searchedPositionEdit);
 
   const cleanInput = () => {
@@ -30,40 +35,42 @@ const Main = () => {
   };
 
   const handleOnPressSortBy = (text) => {
-    setLoading(true);
     setPage(1);
     setSortBy(text);
   };
 
   const loadData = React.useCallback(async () => {
+    dispatch(removeAll());
     try {
-      // const response = await api.get(
-      //   `https://api.adzuna.com/v1/api/jobs/au/search/${page}?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=100&content-type=application/json`,
-      //   {
-      //     params: { what: searchedPosition, sort_by: sortBy },
-      //   },
-      // );
+      // if (page === 1) {
 
-      // setPositions((old) => {
+      dispatch(
+        getJobsRequest({
+          what: searchedPosition,
+          sort_by: sortBy,
+          page,
+        }),
+      );
+      // } else {
+      //   console.tron.log('page is equal to MORE THAN 1');
+      //   dispatch(
+      //     getMoreJobsRequest({
+      //       what: searchedPosition,
+      //       sort_by: sortBy,
+      //       page,
+      //     }),
+      //   );
+      // }
 
-      // const newPositions = prepareData(response.data.results);
-      //   return page > 1
-      //     ? [...old, ...newPositions]
-      //     : newPositions;
-      // });
-
-      const preparedData = prepareData(data);
-      setPositions(preparedData);
-      setLoading(false);
       setLoadingFooter(false);
     } catch (error) {
       console.tron.log(error);
     }
-  }, [page, sortBy, searchedPosition]);
+  }, [page, searchedPosition, sortBy, dispatch]);
 
   const refresh = () => {
-    setLoading(true);
-    setPage(1);
+    setPage(setPage);
+
     loadData();
   };
 
@@ -101,10 +108,6 @@ const Main = () => {
     />
   );
 
-  const footerLoading = () => {
-    return loadingFooter ? <ActivityIndicator size="large" /> : null;
-  };
-
   const List = () => {
     if (positions.length === 0) {
       return <EmptyPage text="Sorry any job was found." />;
@@ -117,11 +120,10 @@ const Main = () => {
         renderItem={renderJobCard}
         keyExtractor={(item) => item.adref.toString()}
         onEndReached={loadMore}
-        refreshing={loading}
+        refreshing={loadingFooter}
         onRefresh={refresh}
-        onEndReachedThreshold={0.2}
-        initialNumToRender={6}
-        ListFooterComponent={footerLoading}
+        onEndReachedThreshold={0.1}
+        initialNumToRender={10}
       />
     );
   };
@@ -136,6 +138,7 @@ const Main = () => {
       />
       <SortButtons handleOnPressSortBy={handleOnPressSortBy} />
       {loading ? <ActivityIndicator size="large" /> : List()}
+      {loadingFooter ? <ActivityIndicator size="large" /> : null}
     </C.Wrapper>
   );
 };

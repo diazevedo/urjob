@@ -8,6 +8,7 @@ export default function favourites(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case '@favourite/ADD_TO_FAVOURITE': {
+        console.tron.log(action.payload);
         draft.favourites.push(action.payload.job.job);
         break;
       }

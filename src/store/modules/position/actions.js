@@ -1,6 +1,6 @@
-export function setPosition({ job }) {
+export function setPosition({ id }) {
   return {
     type: '@position/SET_POSITION',
-    payload: { job },
+    payload: { id },
   };
 }

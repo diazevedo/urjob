@@ -22,33 +22,44 @@ import colors from '~/styles/colors';
 
 import * as C from './styles';
 
-const JobCard = ({ id, company, created, position, city, state, tag, job }) => {
+const JobCard = ({ id, company, created, position, city, state, tag }) => {
   /** it is just for now, then it will come from a global state. */
-  const [favourite, setFavourite] = React.useState();
+
   const navigation = useNavigation();
 
   const favourites = useSelector(
     (stateStore) => stateStore.favourite.favourites,
   );
 
+  const positions = useSelector((stateStore) => stateStore.jobs.positions);
+
+  const job = favourites.find((item) => item.id === id);
+  const [favourite, setFavourite] = React.useState(
+    favourites.some((item) => item.id === id),
+  );
+  console.tron.log({ favourites });
+
   const dispatch = useDispatch();
 
   const handlePressCard = () => {
-    dispatch(setPosition({ job }));
-    navigation.navigate('Job');
+    dispatch(setPosition({ id }));
+    navigation.navigate('Job', { id });
   };
 
-  React.useEffect(() => {
-    const isFavourite = favourites.some((item) => item.id === id);
-    setFavourite(isFavourite);
-  }, [setFavourite, id, favourites]);
+  // React.useEffect(() => {
+  const isFavourite = favourites.some((item) => item.id === id);
+  // setFavourite(isFavourite);
+  // }, [setFavourite, id, favourites]);
 
   const AddToFavourite = () => {
+    console.tron.log('add card');
+    console.tron.log(job);
+    const favouriteToAdd = positions.find((item) => item.id === id);
     setFavourite((prevState) => {
       if (!prevState) {
-        dispatch(addJobToFavourite({ job }));
+        dispatch(addJobToFavourite({ job: favouriteToAdd }));
       } else {
-        dispatch(removeJobFromFavourite({ id: job.id }));
+        dispatch(removeJobFromFavourite({ id }));
       }
       return !prevState;
     });

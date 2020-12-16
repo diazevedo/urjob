@@ -10,28 +10,33 @@ import {
 import TouchableWithIcon from '~/components/TouchableWithIcon';
 import IconFontAWS from 'react-native-vector-icons/FontAwesome';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import * as S from './styles';
 
-const JobHeader = () => {
+const JobHeader = (props) => {
   const navigation = useNavigation();
   const [favourite, setFavourite] = React.useState(false);
-
+  const route = useRoute();
+  console.tron.log({ route });
   const dispatch = useDispatch();
 
-  const job = useSelector((state) => state.position.current);
+  const positions = useSelector((state) => state.jobs.positions);
+  const job = positions.find((item) => item.id === route.params.id);
 
   const favourites = useSelector(
     (stateStore) => stateStore.favourite.favourites,
   );
 
   React.useEffect(() => {
-    const isFavourite = favourites.some((item) => item.id === job.id);
-    setFavourite(isFavourite);
+    // const isFavourite = favourites.some((item) => item.id === job.id);
+
+    // setFavourite(isFavourite);
+    setFavourite(false);
   }, [setFavourite, job.id, favourites]);
 
   const AddToFavourite = () => {
+    console.tron.log('add');
     setFavourite((prevState) => {
       if (!prevState) {
         dispatch(addJobToFavourite({ job }));

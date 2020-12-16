@@ -19,10 +19,18 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const Job = ({ navigation }) => {
-  const [loading, setLoading] = React.useState(true);
+const Job = ({ navigation, route }) => {
+  const [loading] = React.useState(true);
 
-  const job = useSelector((state) => state.position.current);
+  console.tron.log(route);
+
+  const positions = useSelector((state) => state.jobs.positions);
+  const job = positions.find((item) => item.id === route.params.id);
+
+  // React.useEffect(() => {
+
+  //   const isFavourite =
+  // }, [setFavourite, id, favourites]);
 
   const handleApplyPress = () => {
     navigation.navigate('JobWebView', {
